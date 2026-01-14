@@ -1,0 +1,13 @@
+basePath: /api
+info:
+  contact: {}
+  title: Example Swagger API
+  version: "1.0"
+paths: {}
+securityDefinitions:
+  ApiKeyAuth:
+    description: 'Format: Bearer {userId} or Bearer {access token}'
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

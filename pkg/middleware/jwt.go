@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"github.com/infoland-kz/step2travel_manager_api/internal/shared"
+	"github.com/golang-jwt/jwt/v4"
 	"net/http"
 	"strings"
 
@@ -60,8 +60,14 @@ func Configure(secret string) gin.HandlerFunc {
 	}
 }
 
+type ErrResponse struct {
+	Code    string `json:"code"`
+	Message string `json:"message"`
+}
+
 func unauthorized(c *gin.Context, detail string) {
-	c.AbortWithStatusJSON(http.StatusUnauthorized, shared.ErrorResponse{
+
+	c.AbortWithStatusJSON(http.StatusUnauthorized, ErrResponse{
 		Message: detail,
 		Code:    "unauthorized",
 	})

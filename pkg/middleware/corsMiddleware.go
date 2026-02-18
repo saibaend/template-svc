@@ -11,8 +11,7 @@ func CorsMiddleware() gin.HandlerFunc {
 
 		// Можно сделать whitelist
 		allowedOrigins := map[string]bool{
-			"http://localhost:3000":           true,
-			"https://step2travel-dev.kz/app1": true,
+			"http://localhost:3000": true,
 		}
 
 		if allowedOrigins[origin] {

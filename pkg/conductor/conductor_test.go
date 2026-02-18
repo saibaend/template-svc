@@ -12,7 +12,7 @@ import (
 	"testing"
 	"time"
 
-	srvHttp "github.com/infoland-kz/step2travel_manager_api/pkg/http"
+	srvHttp "github.com/saibaend/template-svc/pkg/http"
 )
 
 const (

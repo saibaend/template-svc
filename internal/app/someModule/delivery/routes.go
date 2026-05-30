@@ -5,14 +5,16 @@ import (
 	"github.com/saibaend/template-svc/internal/app/someModule"
 )
 
-type handlers struct {
-	Usecase someModule.Usecase
-}
-
 func AttachRoutes(r *gin.Engine, uc someModule.Usecase) {
+	h := &handlers{usecase: uc}
 
-	//h := &handlers{
-	//	Usecase: uc,
-	//}
-
+	api := r.Group("/api")
+	v1 := api.Group("/v1")
+	{
+		v1.POST("/items", h.CreateItem)
+		v1.GET("/items", h.ListItems)
+		v1.GET("/items/:id", h.GetItem)
+		v1.PUT("/items/:id", h.UpdateItem)
+		v1.DELETE("/items/:id", h.DeleteItem)
+	}
 }

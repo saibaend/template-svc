@@ -2,7 +2,7 @@ package db
 
 import (
 	"fmt"
-	"gitlab-digital.tele2.kz/digital/eshop/backend/kaspi-pay/pkg/db/config"
+
 	"time"
 
 	"github.com/jmoiron/sqlx"
@@ -14,6 +14,7 @@ import (
 const migrationPath = "./migrations"
 
 type Config struct {
+	Type                  string        `env:"DB_TYPE" envDefault:"repository"`
 	Username              string        `env:"DB_USERNAME,required"`
 	Password              string        `env:"DB_PASSWORD,required"`
 	Host                  string        `env:"DB_HOST,required"`
@@ -25,7 +26,7 @@ type Config struct {
 	ConnectionMaxIdleTime time.Duration `env:"DB_CONNECTION_MAX_IDLE_TIME"`
 }
 
-func NewPostgresDB(config config.Config) (*sqlx.DB, error) {
+func NewPostgresDB(config Config) (*sqlx.DB, error) {
 	connectionString := fmt.Sprintf(
 		"%s://%s:%s@%s:%s/%s?%s",
 		config.Type,
@@ -47,7 +48,7 @@ func NewPostgresDB(config config.Config) (*sqlx.DB, error) {
 
 	logrus.Info("starting the migrations")
 	if err = goose.Up(sqlxDb.DB, migrationPath); err != nil {
-		logrus.Error(err)
+		return nil, fmt.Errorf("run migrations: %w", err)
 	}
 	logrus.Info("the migrations launch is over")
 

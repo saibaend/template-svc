@@ -2,7 +2,7 @@ package env
 
 import (
 	"github.com/caarlos0/env/v11"
-	"github.com/saibaend/template-svc/internal/db"
+	"github.com/saibaend/template-svc/pkg/db"
 	"time"
 )
 
@@ -10,6 +10,7 @@ type Env struct {
 	LogLevel          string        `env:"LOG_LEVEL,required"`
 	HttpPort          string        `env:"HTTP_PORT,required"`
 	HttpClientTimeout time.Duration `env:"HTTP_CLIENT_TIMEOUT,required"`
+	CorsEnabled       bool          `env:"CORS_ENABLED" envDefault:"false"`
 	DbConfig          db.Config
 }
 

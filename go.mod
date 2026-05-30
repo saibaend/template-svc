@@ -1,11 +1,10 @@
 module github.com/saibaend/template-svc
 
-go 1.25.5
+go 1.24.0
 
 require (
 	github.com/caarlos0/env/v11 v11.2.2
 	github.com/gin-gonic/gin v1.10.0
-	github.com/golang-jwt/jwt/v4 v4.5.2
 	github.com/golang-jwt/jwt/v5 v5.3.1
 	github.com/jmoiron/sqlx v1.4.0
 	github.com/joho/godotenv v1.5.1
@@ -19,7 +18,6 @@ require (
 	github.com/swaggo/gin-swagger v1.5.3
 	github.com/swaggo/swag v1.16.4
 	gitlab-digital.tele2.kz/digital/core/backend/golang/logger v1.2.2-beta.1
-	gitlab-digital.tele2.kz/digital/eshop/backend/kaspi-pay v1.1.2
 	golang.org/x/text v0.32.0
 )
 
